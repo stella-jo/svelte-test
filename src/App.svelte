@@ -18,7 +18,7 @@
 </script>
 
 <header>
-	<h1>To-do list</h1>
+	<h1>투두리스트</h1>
 	<button class = "editButton"><span></span><span></span><span></span></button>
 </header>
 
