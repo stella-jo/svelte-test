@@ -2,13 +2,13 @@
     export let todo;
 </script>
 
-<form>
+<span>
     <input type = "checkbox" id = "todo">
     <label for = "todo">{todo}</label>
-</form>
+</span>
 
 <style>
-    form {
+    span {
         color: #404040;
         display: flex;
         gap: 8px;
