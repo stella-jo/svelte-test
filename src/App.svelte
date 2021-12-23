@@ -1,24 +1,33 @@
 <script>
 	import Todos from './components/Todos.svelte';
 
-	const input = document.querySelector("input");
+	let newText = "";
+	let todoList = [];
+
 	function add() {
+		const input = document.querySelector(".todoInput");
 		input.style.display = "block";
+		input.focus();
+	}
+	function newTodo() {
+		const input = document.querySelector(".todoInput");
+		todoList = todoList.concat(newText);
+		input.value = null;
+		input.style.display = "none";
 	}
 </script>
 
 <header>
-	<h1>2021-12-22</h1>
-	<button onclick = "add()"><svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-		<rect x="13" width="2" height="28" rx="1" fill="#404040"/>
-		<rect y="13" width="28" height="2" rx="1" fill="#404040"/>
-	</svg></button>
+	<h1>To-do list</h1>
+	<button class = "editButton"><span></span><span></span><span></span></button>
 </header>
 
 <main>
-	<input type = "text">
-	<Todos todo = "영어 공부하기" />
-	<Todos todo = "설거지하기" />
+	{#each todoList as item}
+		<Todos todo = {item} />
+	{/each}
+	<input bind:value = {newText} class = "todoInput" on:blur = {newTodo} type = "text">
+	<button class = "addButton" on:click = {add}>할 일 추가</button>
 </main>
 
 <style>
@@ -41,8 +50,32 @@
 	button {
 		border: none;
 		background: none;
+		text-align: left;
 	}
-	input {
+	.addButton {
+		color: #40404080;
+	}
+	.editButton span {
+		display: block;
+		position: relative;
+		width: 28px;
+		height: 2px;
+		border-radius: 1px;
+		background-color: #DC8F8F;
+	}
+	.editButton span:first-child {
+		top: -8px;
+	}
+	.editButton span:last-child {
+		top: 8px;
+	}
+
+	.todoInput {
+		outline: none;
+		border: none;
+		border-bottom: 2px solid #DC8F8F;
+		padding: 8px 0px;
 		display: none;
+		font-size: 1rem;
 	}
 </style>
