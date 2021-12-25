@@ -1,18 +1,32 @@
 <script>
 	import Todos from './components/Todos.svelte';
 
-	let newText = "";
+	let newText = null;
 	let todoList = [];
+	let input = null;
+	window.addEventListener("load", async () => {
+		input = await document.querySelector(".todoInput");
+		input.addEventListener("keydown", key => {
+			if (newText != null) {
+				if (key.key == "Enter") {
+					todoList = todoList.concat(newText);
+					input.value = null;
+					newText = null;
+				}
+			}
+		});
+	});
 
 	function add() {
-		const input = document.querySelector(".todoInput");
 		input.style.display = "block";
 		input.focus();
 	}
 	function newTodo() {
-		const input = document.querySelector(".todoInput");
-		todoList = todoList.concat(newText);
-		input.value = null;
+		if (newText != null) {
+			todoList = todoList.concat(newText);
+			input.value = null;
+			newText = null;
+		}
 		input.style.display = "none";
 	}
 </script>
@@ -24,9 +38,9 @@
 
 <main>
 	{#each todoList as item}
-		<Todos todo = {item} />
+		<Todos>{item}</Todos>
 	{/each}
-	<input bind:value = {newText} class = "todoInput" on:blur = {newTodo} type = "text">
+	<input enterkeyhint = "done" bind:value = {newText} class = "todoInput" on:blur = {newTodo} type = "text">
 	<button class = "addButton" on:click = {add}>할 일 추가</button>
 </main>
 
@@ -74,6 +88,7 @@
 		outline: none;
 		border: none;
 		border-bottom: 2px solid #DC8F8F;
+		border-radius: 0px;
 		padding: 8px 0px;
 		display: none;
 		font-size: 1rem;

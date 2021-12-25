@@ -1,10 +1,6 @@
-<script>
-    export let todo;
-</script>
-
 <span>
     <input type = "checkbox" id = "todo">
-    <label for = "todo">{todo}</label>
+    <label for = "todo"><slot></slot></label>
 </span>
 
 <style>
