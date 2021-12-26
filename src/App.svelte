@@ -28,11 +28,13 @@
 			if (key.key == "Enter") {
 				if (newText != null) {
 					newTodo();
-				} else {
-					await input.setAttribute("style", "display: none;");
 				}
 			}
 		});
+		const title = document.querySelector("h1");
+		let date = new Date();
+		console.log(date.toDateString());
+		title.textContent = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 	});
 </script>
 
@@ -73,6 +75,10 @@
 	}
 	.addButton {
 		color: #40404080;
+	}
+	.editButton {
+		width: 28px;
+		height: 24px;
 	}
 	.editButton span {
 		display: block;
