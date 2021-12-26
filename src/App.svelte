@@ -4,31 +4,36 @@
 	let newText = null;
 	let todoList = [];
 	let input = null;
-	window.addEventListener("load", async () => {
-		input = await document.querySelector(".todoInput");
-		input.addEventListener("keydown", key => {
-			if (newText != null) {
-				if (key.key == "Enter") {
-					todoList = todoList.concat(newText);
-					input.value = null;
-					newText = null;
-				}
-			}
-		});
-	});
 
 	function add() {
 		input.style.display = "block";
 		input.focus();
 	}
 	function newTodo() {
+		todoList = todoList.concat(newText);
+		input.value = null;
+		newText = null;
+	}
+	
+	function blurFunction() {
 		if (newText != null) {
-			todoList = todoList.concat(newText);
-			input.value = null;
-			newText = null;
+			newTodo();
 		}
 		input.style.display = "none";
 	}
+
+	window.addEventListener("load", async () => {
+		input = await document.querySelector(".todoInput");
+		input.addEventListener("keydown", async key => {
+			if (key.key == "Enter") {
+				if (newText != null) {
+					newTodo();
+				} else {
+					await input.setAttribute("style", "display: none;");
+				}
+			}
+		});
+	});
 </script>
 
 <header>
@@ -40,7 +45,7 @@
 	{#each todoList as item}
 		<Todos>{item}</Todos>
 	{/each}
-	<input enterkeyhint = "done" bind:value = {newText} class = "todoInput" on:blur = {newTodo} type = "text">
+	<input enterkeyhint = "done" bind:value = {newText} class = "todoInput" on:blur = {blurFunction} type = "text">
 	<button class = "addButton" on:click = {add}>할 일 추가</button>
 </main>
 
