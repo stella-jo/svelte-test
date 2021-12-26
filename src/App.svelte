@@ -33,7 +33,6 @@
 		});
 		const title = document.querySelector("h1");
 		let date = new Date();
-		console.log(date.toDateString());
 		title.textContent = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 	});
 </script>
