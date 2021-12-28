@@ -22,9 +22,9 @@
 		input.style.display = "none";
 	}
 
-	window.addEventListener("load", async () => {
-		input = await document.querySelector(".todoInput");
-		input.addEventListener("keydown", async key => {
+	window.addEventListener("load", () => {
+		input = document.querySelector(".todoInput");
+		input.addEventListener("keydown", key => {
 			if (key.key == "Enter") {
 				if (newText != null) {
 					newTodo();
