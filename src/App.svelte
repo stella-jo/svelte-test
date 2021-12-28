@@ -5,12 +5,17 @@
 	let todoList = [];
 	let input = null;
 
+	function removeTodo(index) {
+		todoList = todoList.filter(todo => todo != todoList[index]);
+	}
+
 	function add() {
 		input.style.display = "block";
 		input.focus();
 	}
+
 	function newTodo() {
-		todoList = todoList.concat(newText);
+		todoList = todoList.concat({task: newText, checked: false});
 		input.value = null;
 		newText = null;
 	}
@@ -39,15 +44,18 @@
 
 <header>
 	<h1>투두리스트</h1>
-	<button class = "editButton"><span></span><span></span><span></span></button>
 </header>
 
 <main>
-	{#each todoList as item}
-		<Todos>{item}</Todos>
+	{#each todoList as item, index}
+		<Todos {index} bind:check = {todoList[index].checked} {removeTodo}>{item.task}</Todos>
 	{/each}
 	<input enterkeyhint = "done" bind:value = {newText} class = "todoInput" on:blur = {blurFunction} type = "text">
-	<button class = "addButton" on:click = {add}>할 일 추가</button>
+	<button class = "addButton" on:click = {add}>
+		<svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<rect x="10" y="3" width="4" height="18" rx="1" fill="#DC8F8F"/>
+		<rect x="3" y="10" width="18" height="4" rx="1" fill="#DC8F8F"/>
+		</svg>할 일 추가</button>
 </main>
 
 <style>
@@ -74,24 +82,9 @@
 	}
 	.addButton {
 		color: #40404080;
-	}
-	.editButton {
-		width: 28px;
-		height: 24px;
-	}
-	.editButton span {
-		display: block;
-		position: relative;
-		width: 28px;
-		height: 2px;
-		border-radius: 1px;
-		background-color: #DC8F8F;
-	}
-	.editButton span:first-child {
-		top: -8px;
-	}
-	.editButton span:last-child {
-		top: 8px;
+		display: flex;
+		align-items: center;
+		gap: 4px;
 	}
 
 	.todoInput {
