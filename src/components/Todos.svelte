@@ -29,15 +29,27 @@
         display: flex;
         gap: 8px;
         word-break: break-all;
+        align-items: center;
+    }
+    label {
+        color: #404040;
     }
     input:checked ~ label {
         text-decoration: line-through;
-        opacity: 50%;
+        opacity: 70%;
     }
-
-    /* input {
+    input {
         appearance: none;
-    } */
+        width: 16px;
+        height: 16px;
+        background-color: #ffffff;
+        border: 2px solid #40404050;
+        border-radius: 6px;
+    }
+    input:checked {
+        background-color: #DC8F8F50;
+        border-color: #DC8F8F;
+    }
     @media screen and (min-device-width: 769px) {
         button {
             display: none;
