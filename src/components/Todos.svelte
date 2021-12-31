@@ -40,6 +40,7 @@
     }
     input {
         appearance: none;
+        -webkit-appearance: none;
         width: 16px;
         height: 16px;
         background-color: #ffffff;
