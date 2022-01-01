@@ -68,6 +68,7 @@
 		padding: 36px;
 		max-height: 100vw;
 		max-height: 100vh;
+		position: fixed;
 	}
 
 	header {
