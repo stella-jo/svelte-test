@@ -66,7 +66,7 @@
 		flex-direction: column;
 		gap: 36px;
 		padding: 36px;
-		max-height: 100vw;
+		max-width: 100vw;
 	}
 
 	header {
