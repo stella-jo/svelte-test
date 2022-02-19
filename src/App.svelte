@@ -104,7 +104,7 @@
 
 	@media screen and (min-device-width: 769px) {
 		.container {
-			width: 400px;
+			min-width: 400px;
 			height: 600px;
 			border-radius: 36px;
 			position: absolute;
