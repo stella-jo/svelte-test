@@ -1,5 +1,6 @@
-<script>
-	import Todos from './components/Todos.svelte';
+<script lang="ts">
+	import Todos from "../components/Todos.svelte";
+	import { onMount } from "svelte";
 
 	let newText = null;
 	let todoList = [];
@@ -26,9 +27,9 @@
 		input.style.display = "none";
 	}
 
-	window.addEventListener("load", () => {
+	onMount(() => {
 		input = document.querySelector(".todoInput");
-		input.addEventListener("keydown", key => {
+		input.addEventListener("keydown", (key) => {
 			if (key.key == "Enter") {
 				if (newText != null) {
 					newTodo();
@@ -36,10 +37,14 @@
 			}
 		});
 		const title = document.querySelector("h1");
-		let date = new Date();
+		const date = new Date();
 		title.textContent = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
 	});
 </script>
+
+<svelte:head>
+	<title>투두리스트</title>
+</svelte:head>
 
 <div class = "container">
 	<header>

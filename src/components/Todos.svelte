@@ -28,7 +28,6 @@
     form {
         display: flex;
         gap: 8px;
-        word-break: break-all;
         align-items: center;
         flex: 1 0 auto;
         min-height: 20px;
@@ -53,15 +52,18 @@
         background-color: #DC8F8F50;
         border-color: #DC8F8F;
     }
+    button {
+        display: flex;
+        width: 20px;
+        aspect-ratio: 1/1;
+        justify-content: center;
+        align-items: center;
+        padding: 4px;
+        flex: 0 0 auto;
+    }
     @media screen and (min-device-width: 769px) {
         button {
             display: none;
-            width: 20px;
-            aspect-ratio: 1/1;
-            justify-content: center;
-            align-items: center;
-            padding: 4px;
-            flex: 0 0 auto;
         }
         .box:hover button {
             display: flex;
