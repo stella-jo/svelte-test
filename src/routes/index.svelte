@@ -107,9 +107,9 @@
 		font-size: 1rem;
 	}
 
-	@media screen and (min-device-width: 769px) {
+	@media screen and (min-width: 769px) {
 		.container {
-			min-width: 400px;
+			min-width: 600px;
 			height: 600px;
 			border-radius: 36px;
 			position: absolute;

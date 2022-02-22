@@ -10,8 +10,8 @@
 	text-align: left;
 }
 
-@media screen and (min-device-width: 769px) {
-	body {
+@media screen and (min-width: 769px) {
+	html, body {
 		background-color: #fff4f4;
 	}
 }
